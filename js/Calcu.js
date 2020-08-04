@@ -24,6 +24,9 @@ $(document).ready(function() {
 });
 function displayNumber(number) {
     var x = $('input[name=result]').val();
+    if(x.length==1 && x == "0") {
+        x = eval($('input[name=result]').val());
+    }
     if(isNaN(number)) {
         if(x.length == 0) {
             x='0';
