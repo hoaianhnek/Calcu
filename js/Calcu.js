@@ -1,8 +1,24 @@
+$(document).ready(function() {
+    var history = [];
+    
+    $('.equalresult').click(function() {
+        $('input[name=result]').val(eval( $('input[name=result]').val()));
+        history.push($('input[name=result]').val());
+        $('.history-result').html("");
+        if(history.length>10) {
+            history.shift();
+        }
+        for(var i=0;i<history.length;i++) {
+            $('.history-result').append('<div>'+history[i]+'</div>');
+        }
+    });
+    $('.clear-history').click(function() {
+        $('.history-result').html("");
+        history = [];
+    });
+});
 function displayNumber(number) {
     $('input[name=result]').val($('input[name=result]').val()+number);
-}
-function equalresult() {
-    $('input[name=result]').val(eval( $('input[name=result]').val()));
 }
 function resetequal() {
     $('input[name=result]').val('');
