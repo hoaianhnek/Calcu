@@ -28,7 +28,6 @@ $(document).ready(function() {
         var x =  $('input[name=result]').val();
         if(equal == x.slice(0,x.length-1)){
             if($(this).attr('data-number') == '.') {
-                
                 $('input[name=result]').val('0'+$(this).attr('data-number'));
             }else {
                 $('input[name=result]').val($(this).attr('data-number'));
@@ -61,6 +60,15 @@ function resetequal() {
 }
 function decimal() {
     var x = $('input[name=result]').val();
+    
+    for(var i=0;i<x.length;i++) {
+        if(isNaN(x[i])) {
+            if((x.slice(i,x.length)).indexOf('.')==-1) {
+                $('input[name=result]').val($('input[name=result]').val()+'.');
+                return 0;
+            }
+        }
+    }
     if(x.indexOf('.') == -1) {
         $('input[name=result]').val($('input[name=result]').val()+'.');
     }
