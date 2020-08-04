@@ -1,9 +1,8 @@
 $(document).ready(function() {
     var history = [];
-    
     $('.equalresult').click(function() {
+        history.push($('input[name=result]').val()+"="+eval( $('input[name=result]').val()));
         $('input[name=result]').val(eval( $('input[name=result]').val()));
-        history.push($('input[name=result]').val());
         $('.history-result').html("");
         if(history.length>10) {
             history.shift();
@@ -18,7 +17,14 @@ $(document).ready(function() {
     });
 });
 function displayNumber(number) {
-    $('input[name=result]').val($('input[name=result]').val()+number);
+    var x = $('input[name=result]').val();
+    if(isNaN(number)) {
+        var endx = x.slice(x.length-1,x.length);
+        if(isNaN(endx)) {
+            x = x.slice(0,x.length-1);
+        }
+    }
+    $('input[name=result]').val(x+number);
 }
 function resetequal() {
     $('input[name=result]').val('');
