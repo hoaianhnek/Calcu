@@ -1,0 +1,33 @@
+#calculator {
+    width: 15%;
+    background-color: #BFBFBF;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+#calculator .result {
+    outline: none;
+    height: 40px;
+    width: 90%;
+    border: none;
+    font-size: 20px;
+    text-align: end;
+    background-color: inherit;
+}
+#calculator> button {
+    font-size: 20px;
+    outline: none;
+    margin-top: 5px;
+    width: 40px;
+    padding: 10px 10px;
+    margin: 2px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+}
+@media only screen and (max-width:375px) {
+    #calculator {
+        width: 65%;
+    }
+}
