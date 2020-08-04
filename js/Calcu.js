@@ -1,8 +1,14 @@
 $(document).ready(function() {
     var history = [];
     $('.equalresult').click(function() {
-        history.push($('input[name=result]').val()+"="+eval( $('input[name=result]').val()));
-        $('input[name=result]').val(eval( $('input[name=result]').val()));
+        var x = $('input[name=result]').val();
+        if(isNaN(x.slice(x.length-1,x.length))) {
+            history.push($('input[name=result]').val()+eval(x.slice(0,x.length-1))+"="+eval($('input[name=result]').val()+x.slice(0,x.length-1)));
+            $('input[name=result]').val(eval( $('input[name=result]').val()+x.slice(0,x.length-1)));
+        } else {
+            history.push($('input[name=result]').val()+"="+eval( $('input[name=result]').val()));
+            $('input[name=result]').val(eval( $('input[name=result]').val()));
+        }
         $('.history-result').html("");
         if(history.length>10) {
             history.shift();
@@ -19,10 +25,14 @@ $(document).ready(function() {
 function displayNumber(number) {
     var x = $('input[name=result]').val();
     if(isNaN(number)) {
-        var endx = x.slice(x.length-1,x.length);
-        if(isNaN(endx)) {
-            x = x.slice(0,x.length-1);
-        }
+        if(x.length == 0) {
+            x='0';
+        } else {
+            var endx = x.slice(x.length-1,x.length);
+            if(isNaN(endx)) {
+                x = x.slice(0,x.length-1);
+            }
+        } 
     }
     $('input[name=result]').val(x+number);
 }
